@@ -1,5 +1,12 @@
 from app import App
-from app.services.youtube_service import get_channel
+from app.api_fetcher import ApiFetcher
+from app.data_processor import DataProcessor
+from app.server import server
+
+def main():
+    app = App()
+    app.run()
 
 if __name__ == "__main__":
-    print(get_channel())
+    print("{'a': 'b'}")
+    print({"a": "b"})

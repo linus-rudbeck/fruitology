@@ -1,2 +1,5 @@
 pytest
 bcrypt
+requests
+pandas
+flask

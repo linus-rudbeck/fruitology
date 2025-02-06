@@ -15,7 +15,7 @@ class AuthManager:
 
     def save_users(self, users):
         with open(self.users_file, "w") as file:
-            json.dump(users, file)
+            json.dump(users, file, indent=2)
 
     def register(self, username, password):
         users = self.load_users()
@@ -29,8 +29,9 @@ class AuthManager:
     def login(self, username, password):
         users = self.load_users()
         saved_hash = users.get(username)
+
         if not saved_hash:
-            raise Exception("Användaren finns inte")
-        result = bcrypt.checkpw(password.encode(), saved_hash.encode())
-        return result
-        
+            raise Exception("Fel användaruppgifter")
+
+        if not bcrypt.checkpw(password.encode(), saved_hash.encode()):
+            raise Exception("Fel användaruppgifter")
